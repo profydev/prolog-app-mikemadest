@@ -1,7 +1,7 @@
 export enum IssueLevel {
-  info = "info",
-  warning = "warning",
-  error = "error",
+  info = 'info',
+  warning = 'warning',
+  error = 'error',
 }
 
 export type Issue = {
@@ -12,4 +12,5 @@ export type Issue = {
   stack: string;
   level: IssueLevel;
   numEvents: number;
+  numUsers: number;
 };

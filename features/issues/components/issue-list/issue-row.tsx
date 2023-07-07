@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import capitalize from "lodash/capitalize";
-import { color, space, textFont } from "@styles/theme";
-import { Badge, BadgeColor, BadgeSize } from "@features/ui";
-import { ProjectLanguage } from "@api/projects.types";
-import { IssueLevel } from "@api/issues.types";
-import type { Issue } from "@api/issues.types";
+import styled from 'styled-components';
+import capitalize from 'lodash/capitalize';
+import {color, space, textFont} from '@styles/theme';
+import {Badge, BadgeColor, BadgeSize} from '@features/ui';
+import {ProjectLanguage} from '@api/projects.types';
+import {IssueLevel} from '@api/issues.types';
+import type {Issue} from '@api/issues.types';
 
 type IssueRowProps = {
   projectLanguage: ProjectLanguage;
@@ -19,14 +19,14 @@ const levelColors = {
 
 const Row = styled.tr`
   &:nth-child(2n) {
-    background: ${color("gray", 50)};
+    background: ${color('gray', 50)};
   }
 `;
 
 const Cell = styled.td`
   padding: ${space(4, 6)};
-  color: ${color("gray", 500)};
-  ${textFont("sm", "regular")}
+  color: ${color('gray', 500)};
+  ${textFont('sm', 'regular')}
 `;
 
 const IssueCell = styled(Cell)`
@@ -40,24 +40,22 @@ const LanguageIcon = styled.img`
 `;
 
 const ErrorTypeAndMessage = styled.div`
-  color: ${color("gray", 900)};
+  color: ${color('gray', 900)};
 `;
 
 const ErrorType = styled.span`
-  ${textFont("sm", "medium")}
+  ${textFont('sm', 'medium')}
 `;
 
-export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
-  const { name, message, stack, level, numEvents } = issue;
-  const firstLineOfStackTrace = stack.split("\n")[1];
+export function IssueRow({projectLanguage, issue}: IssueRowProps) {
+  console.log('issue = ', issue);
+  const {name, message, stack, level, numEvents, numUsers} = issue;
+  const firstLineOfStackTrace = stack.split('\n')[1];
 
   return (
     <Row>
       <IssueCell>
-        <LanguageIcon
-          src={`/icons/${projectLanguage}.svg`}
-          alt={projectLanguage}
-        />
+        <LanguageIcon src={`/icons/${projectLanguage}.svg`} alt={projectLanguage} />
         <div>
           <ErrorTypeAndMessage>
             <ErrorType>{name}:&nbsp;</ErrorType>
@@ -72,7 +70,7 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
         </Badge>
       </Cell>
       <Cell>{numEvents}</Cell>
-      <Cell>{numEvents}</Cell>
+      <Cell>{numUsers}</Cell>
     </Row>
   );
 }
